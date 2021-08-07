@@ -272,9 +272,11 @@ func main() {
 				os.Exit(ex.ExitCode())
 			}
 			fmt.Fprintf(os.Stderr, "Running llamacc: %s\n", err.Error())
-			os.Exit(1)
+			fmt.Fprintf(os.Stderr, "Fallback to local compilation")
+			//os.Exit(1)
+		} else {
+			os.Exit(0)
 		}
-		os.Exit(0)
 	}
 	if cfg.Verbose {
 		log.Printf("[llamacc] compiling locally: %s (%q)", err.Error(), os.Args)
